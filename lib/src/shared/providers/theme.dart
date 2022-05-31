@@ -39,6 +39,8 @@ class ThemeProvider extends InheritedWidget {
     builders: <TargetPlatform, PageTransitionsBuilder>{
       TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
       TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+      // Desktop users already get feedback from their
+      // mouse or trackpad click, so a page transition animation isn't needed.
       TargetPlatform.linux: NoAnimationPageTransitionsBuilder(),
       TargetPlatform.macOS: NoAnimationPageTransitionsBuilder(),
       TargetPlatform.windows: NoAnimationPageTransitionsBuilder(),
