@@ -38,6 +38,8 @@ class _OutlinedCardState extends State<OutlinedCard> {
         curve: animationCurve,
         decoration: BoxDecoration(
           border: Border.all(
+            // Access all of the new colors by referencing
+            // the theme in the context and grabbing the ColorScheme
             color: Theme.of(context).colorScheme.outline,
             width: 1,
           ),
