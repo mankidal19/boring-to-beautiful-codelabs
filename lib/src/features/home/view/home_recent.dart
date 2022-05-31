@@ -16,6 +16,9 @@ class HomeRecent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // The app renders the "Recently played" tiles differently
+    // on desktop and mobile. It's normally a horizontal tile,
+    // but on mobile they're vertical cards.
     if (axis == Axis.horizontal) {
       return SizedBox(
         height: 295,

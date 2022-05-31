@@ -12,7 +12,9 @@ class HomeHighlight extends StatelessWidget {
       children: [
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.all(35),
+            // set the left and right padding on the banner to 35,
+            // and the top and bottom padding to 5
+            padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 5),
             child: Clickable(
               child: SizedBox(
                 height: 275,
