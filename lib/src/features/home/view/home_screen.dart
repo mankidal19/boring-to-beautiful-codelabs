@@ -89,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 AdaptiveContainer(
                   columnSpan: 12,
                   child: Padding(
-                    padding: const EdgeInsets.all(2), // Modify this line
+                    padding: const EdgeInsets.all(35),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -125,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(2), // Modify this line
+                        padding: const EdgeInsets.all(35),
                         child: Text(
                           'Recently played',
                           style: context.headlineSmall,
@@ -140,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 AdaptiveContainer(
                   columnSpan: 12,
                   child: Padding(
-                    padding: const EdgeInsets.all(2), // Modify this line
+                    padding: const EdgeInsets.all(35),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -152,7 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Padding(
                                 padding:
-                                    const EdgeInsets.all(2), // Modify this line
+                                    const EdgeInsets.all(35),
                                 child: Text(
                                   'Top Songs Today',
                                   style: context.titleLarge,
@@ -169,6 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         // Add spacer between tables
+                        const SizedBox(width: 35),
                         Flexible(
                           flex: 10,
                           child: Column(
@@ -177,7 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Padding(
                                 padding:
-                                    const EdgeInsets.all(2), // Modify this line
+                                    const EdgeInsets.all(35),
                                 child: Text(
                                   'New Releases',
                                   style: context.titleLarge,
