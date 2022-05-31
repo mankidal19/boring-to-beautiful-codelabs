@@ -17,31 +17,42 @@ class AdaptiveNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
+      // Navigation rails are good for desktop and large screens,
+      // but make the layout mobile friendly by showing a bottom
+      // navigation bar on mobile instead.
       builder: (context, dimens) {
         // Tablet Layout
-        // Add maxWidth constraint check
+        if (dimens.maxWidth >= 600) {
+          return Scaffold(
+            body: Row(
+              children: [
+                NavigationRail(
+                  extended: dimens.maxWidth >= 800,
+                  minExtendedWidth: 180,
+                  destinations: destinations
+                      .map((e) => NavigationRailDestination(
+                            icon: e.icon,
+                            label: Text(e.label),
+                          ))
+                      .toList(),
+                  selectedIndex: selectedIndex,
+                  onDestinationSelected: onDestinationSelected,
+                ),
+                Expanded(child: child),
+              ],
+            ),
+          );
+        }
+
+        // Mobile Layout
         return Scaffold(
-          body: Row(
-            children: [
-              NavigationRail(
-                extended: dimens.maxWidth >= 800,
-                minExtendedWidth: 180,
-                destinations: destinations
-                    .map((e) => NavigationRailDestination(
-                          icon: e.icon,
-                          label: Text(e.label),
-                        ))
-                    .toList(),
-                selectedIndex: selectedIndex,
-                onDestinationSelected: onDestinationSelected,
-              ),
-              Expanded(child: child),
-            ],
+          body: child,
+          bottomNavigationBar: NavigationBar(
+            destinations: destinations,
+            selectedIndex: selectedIndex,
+            onDestinationSelected: onDestinationSelected,
           ),
         );
-        // Add closing curly bracket
-
-        // Add return for mobile layout
       },
     );
   }
