@@ -24,10 +24,64 @@ class _HomeScreenState extends State<HomeScreen> {
     final Playlist newReleases = playlistProvider.newReleases;
     final ArtistsProvider artistsProvider = ArtistsProvider();
     final List<Artist> artists = artistsProvider.artists;
+
+    //  It's common (and recommended!) to hide features
+    //  on mobile that only make sense on large screens and form factors.
     return LayoutBuilder(
       builder: (context, constraints) {
-        // Add conditional mobile layout
+        // Conditional mobile layout
+        if (constraints.isMobile) {
+          return DefaultTabController(
+            length: 4,
+            child: Scaffold(
+              appBar: AppBar(
+                centerTitle: false,
+                title: const Text('Good morning'),
+                actions: const [BrightnessToggle()],
+                bottom: const TabBar(
+                  isScrollable: true,
+                  tabs: [
+                    Tab(text: 'Home'),
+                    Tab(text: 'Recently Played'),
+                    Tab(text: 'Top Songs'),
+                    Tab(text: 'New Releases'),
+                  ],
+                ),
+              ),
+              body: LayoutBuilder(
+                builder: (context, constraints) => TabBarView(
+                  children: [
+                    SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          const HomeHighlight(),
+                          HomeArtists(
+                            artists: artists,
+                            constraints: constraints,
+                          ),
+                        ],
+                      ),
+                    ),
+                    HomeRecent(
+                      playlists: playlists,
+                      axis: Axis.vertical,
+                    ),
+                    PlaylistSongs(
+                      playlist: topSongs,
+                      constraints: constraints,
+                    ),
+                    PlaylistSongs(
+                      playlist: newReleases,
+                      constraints: constraints,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        }
 
+        // non-mobile layout
         return Scaffold(
           body: SingleChildScrollView(
             child: AdaptiveColumn(
